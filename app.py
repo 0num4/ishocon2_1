@@ -205,10 +205,13 @@ def post_vote():
     elif not request.form['keyword']:
         return render_template('vote.html', candidates=candidates, message='投票理由を記入してください')
 
+    array=[]
     for _ in range(int(request.form['vote_count'])):
-        cur.execute('INSERT INTO votes (user_id, candidate_id, keyword) VALUES ({}, {}, "{}")'.format(
-            user['id'], candidate['id'], request.form['keyword']
-        ))
+        array.append[user['id'], candidate['id'], request.form['keyword']]
+
+    cur.execute('INSERT INTO votes (user_id, candidate_id, keyword) VALUES ({}, {}, "{}")'.format(
+        array
+    ))
     return render_template('vote.html', candidates=candidates, message='投票に成功しました')
 
 
